@@ -7,6 +7,7 @@ import { LoggerMiddleware } from './common/middleware/logger/logger.middleware';
 import { CarController } from './car/car.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
+import { Car } from './car/car.entity';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { DataSource } from 'typeorm';
       password: '0000',
       database: 'car_for_rent',
       synchronize: true,
-      entities: [],
+      entities: [Car],
     }),
     CarModule,
     UsersModule,
