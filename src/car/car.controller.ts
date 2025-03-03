@@ -1,33 +1,41 @@
-import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpStatus,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { CarService } from './car.service';
+import { CreateCarDto } from './dto/create-car-dto';
 
 @Controller('car')
 export class CarController {
   constructor(private carService: CarService) {}
   @Post()
-  addCar() {
-    return this.carService.addNewCar('Toyota, Byd, Hyundai');
+  addCar(@Body() carDto: CreateCarDto) {
+    return this.carService.addNewCar(carDto);
   }
   @Get()
   findAllCars() {
     return this.carService.findAllCars();
   }
   @Get(':id')
-  findCar(id: number) {
-    return 'This action returns a #${id} car';
+  findCar(
+    @Param(
+      'id',
+      new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
+    )
+    id: number,
+  ) {
+    return 'this action returns a single car';
   }
 
-  @Get(':id')
-  checkAvailability(id: number) {
+  @Get(':id/availability')
+  checkAvailability() {
     return 'this action returns availability of a car';
-  }
-  @Put(':id')
-  updateCar(id: number) {
-    return 'This action updates a #${id} car';
-  }
-
-  @Delete(':id')
-  deleteCar(id: number) {
-    return 'This action removes a #${id} car';
   }
 }
