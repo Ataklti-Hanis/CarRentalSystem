@@ -13,7 +13,7 @@ export class Car {
   @Column()
   year: number;
 
-  @Column()
+  @Column({ type: 'boolean', default: true })
   availability: boolean;
 
   @Column()
@@ -25,4 +25,7 @@ export class Car {
     default: 'AVAILABLE',
   })
   status: string;
+
+  @Column({ nullable: true })
+  image: string;
 }

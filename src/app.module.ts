@@ -8,9 +8,14 @@ import { CarController } from './car/car.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { Car } from './car/car.entity';
+import { join } from 'path';
+import { ServeStaticModule } from '@nestjs/serve-static';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '...', 'images'),
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
