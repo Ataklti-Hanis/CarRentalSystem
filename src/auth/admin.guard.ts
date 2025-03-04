@@ -12,11 +12,18 @@ export class AdminGuard implements CanActivate {
 
   canActivate(context: ExecutionContext): boolean {
     const request = context.switchToHttp().getRequest();
+
+    // ✅ Ensure Authorization Header Exists
+    if (!request.headers.authorization) {
+      throw new ForbiddenException('No Authorization header');
+    }
+
     const token = request.headers.authorization.split(' ')[1];
 
     if (!token) {
-      throw new ForbiddenException('No token provided');
+      throw new ForbiddenException('Invalid token format');
     }
+
     let user;
     try {
       user = this.jwtService.verify(token);

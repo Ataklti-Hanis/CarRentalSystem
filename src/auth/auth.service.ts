@@ -3,7 +3,6 @@ import { User } from 'src/users/user.entity';
 import { UsersService } from 'src/users/users.service';
 import { LoginDto } from './dto/login.dto';
 import * as bcrypt from 'bcrypt';
-import { plainToInstance } from 'class-transformer';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
@@ -23,12 +22,16 @@ export class AuthService {
     if (passwordMatched) {
       // return plainToInstance(User, user);
       delete (user as any).password;
-      const payload = { email: user.email, sub: user.id };
+      const payload = { email: user.email, sub: user.id, role: user.role };
       return {
         accessToken: this.jwtService.sign(payload),
       };
     } else {
       throw new UnauthorizedException('password does not match');
     }
+  }
+
+  async validateUserByApiKey(apiKey: string): Promise<User | null> {
+    return this.usersService.findOneByApiKey(apiKey);
   }
 }

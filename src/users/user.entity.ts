@@ -23,6 +23,9 @@ export class User {
   @Column({ nullable: true })
   phone: string;
 
+  @Column()
+  apiKey: string;
+
   @Column({
     type: 'enum',
     enum: Role,
