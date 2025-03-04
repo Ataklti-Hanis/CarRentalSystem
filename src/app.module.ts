@@ -13,6 +13,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { AvailabilityModule } from './availability/availability.module';
 import { ReservationModule } from './reservation/reservation.module';
 import { AuthModule } from './auth/auth.module';
+import { User } from './users/user.entity';
 
 @Module({
   imports: [
@@ -27,7 +28,7 @@ import { AuthModule } from './auth/auth.module';
       password: '0000',
       database: 'car_for_rent',
       synchronize: true,
-      entities: [Car],
+      entities: [Car, User],
     }),
     CarModule,
     UsersModule,
