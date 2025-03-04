@@ -10,6 +10,7 @@ import {
   Put,
   Query,
   UploadedFile,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { CarService } from './car.service';
@@ -21,11 +22,13 @@ import { Car } from './car.entity';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { UpdateCarDto } from './dto/update-car-dto';
 import { Pagination } from 'nestjs-typeorm-paginate/dist/pagination';
+import { AdminGuard } from 'src/auth/admin.guard';
 
 @Controller('car')
 export class CarController {
   constructor(private carService: CarService) {}
   @Post()
+  @UseGuards(AdminGuard)
   @UseInterceptors(
     FileInterceptor('image', {
       storage: diskStorage({
@@ -74,11 +77,13 @@ export class CarController {
   }
 
   @Delete(':id')
+  @UseGuards(AdminGuard)
   remove(@Param('id') id: string): Promise<DeleteResult> {
     return this.carService.deleteCar(id);
   }
 
   @Put(':id')
+  @UseGuards(AdminGuard)
   @UseInterceptors(FileInterceptor('image'))
   update(
     @Param('id') id: string,
