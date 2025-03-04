@@ -8,6 +8,11 @@ import { UpdateCarDto } from './dto/update-car-dto';
 import { unlink } from 'fs';
 import { promisify } from 'util';
 import { promises as fs } from 'fs';
+import {
+  IPaginationOptions,
+  paginate,
+  Pagination,
+} from 'nestjs-typeorm-paginate';
 const unlinkAsync = promisify(unlink);
 @Injectable()
 export class CarService {
@@ -121,5 +126,21 @@ export class CarService {
     console.log('Update result:', updateResult);
 
     return updateResult;
+  }
+
+  // async checkAvailability(
+  //   id: string,
+  //   checkDto: checkAvailabilityDto,
+  // ): Promise<boolean> {
+  //   const { startDate, endDate } = checkDto;
+  //   const overlappingBookings = await this.bookingRepo.count({});
+  // }
+
+  async paginate(options: IPaginationOptions): Promise<Pagination<Car>> {
+    const queryBuilder = await this.carRepo.createQueryBuilder('c');
+
+    queryBuilder.orderBy('c.year', 'ASC');
+
+    return paginate<Car>(queryBuilder, options);
   }
 }

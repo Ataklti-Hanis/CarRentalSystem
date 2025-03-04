@@ -1,9 +1,11 @@
 import {
   Body,
   Controller,
+  DefaultValuePipe,
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   Put,
   Query,
@@ -18,6 +20,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { Car } from './car.entity';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { UpdateCarDto } from './dto/update-car-dto';
+import { Pagination } from 'nestjs-typeorm-paginate/dist/pagination';
 
 @Controller('car')
 export class CarController {
@@ -45,8 +48,12 @@ export class CarController {
     return this.carService.addNewCar(carDto, image);
   }
   @Get()
-  findAllCars(): Promise<Car[]> {
-    return this.carService.getAllCars();
+  findAllCars(
+    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number = 1,
+    @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number = 10,
+  ): Promise<Pagination<Car>> {
+    limit = limit > 100 ? 100 : limit;
+    return this.carService.paginate({ page, limit });
   }
 
   @Get('search')

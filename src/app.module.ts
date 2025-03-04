@@ -10,6 +10,9 @@ import { DataSource } from 'typeorm';
 import { Car } from './car/car.entity';
 import { join } from 'path';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { AvailabilityModule } from './availability/availability.module';
+import { ReservationModule } from './reservation/reservation.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -28,6 +31,9 @@ import { ServeStaticModule } from '@nestjs/serve-static';
     }),
     CarModule,
     UsersModule,
+    AvailabilityModule,
+    ReservationModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
