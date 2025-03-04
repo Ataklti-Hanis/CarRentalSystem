@@ -1,12 +1,11 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
-  HttpStatus,
-  Logger,
   Param,
-  ParseIntPipe,
   Post,
+  Put,
   Query,
   UploadedFile,
   UseInterceptors,
@@ -17,6 +16,8 @@ import { diskStorage } from 'multer';
 import * as path from 'path';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Car } from './car.entity';
+import { DeleteResult, UpdateResult } from 'typeorm';
+import { UpdateCarDto } from './dto/update-car-dto';
 
 @Controller('car')
 export class CarController {
@@ -63,5 +64,21 @@ export class CarController {
   @Get(':id/availability')
   checkAvailability() {
     return 'this action returns availability of a car';
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string): Promise<DeleteResult> {
+    return this.carService.deleteCar(id);
+  }
+
+  @Put(':id')
+  @UseInterceptors(FileInterceptor('image'))
+  update(
+    @Param('id') id: string,
+    @Body() updateCarDto: UpdateCarDto,
+    @UploadedFile() file: Express.Multer.File,
+  ): Promise<UpdateResult> {
+    console.log('File received:', file);
+    return this.carService.update(id, updateCarDto, file);
   }
 }

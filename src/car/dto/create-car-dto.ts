@@ -24,7 +24,7 @@ export class CreateCarDto {
 
   @IsNotEmpty()
   @IsNumber()
-  @Transform(({ value }) => Number(value))
+  @Transform(({ value }) => Number(value) || 0)
   readonly year: number;
 
   @IsBoolean()
@@ -36,7 +36,7 @@ export class CreateCarDto {
 
   @IsNotEmpty()
   @IsNumber()
-  @Transform(({ value }) => Number(value))
+  @Transform(({ value }) => Number(value) || 0)
   readonly pricePerDay: number;
 
   @IsEnum(carStatus)
