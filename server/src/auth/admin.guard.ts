@@ -13,7 +13,6 @@ export class AdminGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean {
     const request = context.switchToHttp().getRequest();
 
-    // ✅ Ensure Authorization Header Exists
     if (!request.headers.authorization) {
       throw new ForbiddenException('No Authorization header');
     }

@@ -27,7 +27,7 @@ export class AuthService {
         accessToken: this.jwtService.sign(payload),
       };
     } else {
-      throw new UnauthorizedException('password does not match');
+      throw new UnauthorizedException('Invalid credentials');
     }
   }
 

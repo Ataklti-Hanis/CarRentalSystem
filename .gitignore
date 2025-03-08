@@ -1,7 +1,15 @@
-# compiled output
+# Ignore Node.js dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Ignore build and compiled output
 /dist
-/node_modules
-/build
+/client/dist/
+/server/dist/
+.build
+/client/build/
+/server/build/
 
 # Logs
 logs
@@ -41,8 +49,10 @@ lerna-debug.log*
 .env.test.local
 .env.production.local
 .env.local
+client/.env
+server/.env
 
-# temp directory
+# Temp directories
 .temp
 .tmp
 

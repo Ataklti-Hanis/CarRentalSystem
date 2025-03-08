@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user.entity';
 import { Repository } from 'typeorm';
@@ -64,7 +64,6 @@ export class UsersService {
         email: updateUserDto.email,
       });
       if (existingUser) {
-        // If the email exists, retain the old email
         updateUserDto.email = user.email;
       } else {
         // If the email is valid and not existing, update it
