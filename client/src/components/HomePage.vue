@@ -10,7 +10,7 @@
           Explore a wide variety of cars to suit your needs. From economy to luxury, we've got it
           all.
         </p>
-        <RouterLink to="/cars" class="cta-link">View Cars</RouterLink>
+        <RouterLink to="/view-cars" class="cta-link">View Cars</RouterLink>
       </div>
       <div class="feature">
         <h2>Make a Reservation</h2>

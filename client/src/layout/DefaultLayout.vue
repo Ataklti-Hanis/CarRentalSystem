@@ -32,14 +32,14 @@ const isAuthenticated = computed(() => authStore.isAuthenticated())
   align-items: center;
   min-height: 100vh;
   width: 100vw;
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   left: 0;
   overflow: hidden;
   background-image: url('@/assets/adrien-vajas-DIOJmxKCA6c-unsplash.jpg');
   background-size: cover; /* Ensures the image covers the entire container */
   background-position: top left; /* Makes sure the image is positioned at the top-left corner */
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
   margin: 0; /* Ensure no margin on the container */
   padding: 0; /* Ensure no padding inside the container */
 }

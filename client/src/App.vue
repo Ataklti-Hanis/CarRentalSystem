@@ -14,7 +14,6 @@ const isAuthenticated = computed(() => authStore.isAuthenticated())
 </template>
 
 <style scoped>
-/* Full-Screen Background Effect */
 .auth-container {
   display: flex;
   flex-direction: column;
@@ -22,10 +21,8 @@ const isAuthenticated = computed(() => authStore.isAuthenticated())
   align-items: center;
   min-height: 100vh;
   width: 100vw;
-  position: fixed;
   top: 0;
   left: 0;
-  overflow: hidden;
   background-image: url('@/assets/adrien-vajas-DIOJmxKCA6c-unsplash.jpg');
   background-size: cover;
   background-position: center;
@@ -51,9 +48,6 @@ const isAuthenticated = computed(() => authStore.isAuthenticated())
 /* Header and Navigation Styles */
 header {
   width: 100%;
-  position: fixed; /* Fix header at the top */
-  top: 0;
-  right: 0; /* Align header to the right */
   padding: 10px 20px;
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
   z-index: 10; /* Ensure header stays above other content */
@@ -79,122 +73,10 @@ nav a:hover {
   color: #3498db; /* Blue color on hover */
 }
 
-/* Logo Styling (if you have a logo image) */
-.logo {
-  font-size: 16px;
-  font-weight: 700;
-  color: white;
-  text-transform: uppercase;
-}
-
 /* Content Area Below the Navigation */
 .router-view {
   margin-top: 60px; /* Create space below the fixed header */
   flex: 1;
   width: 100%;
-}
-
-/* Form Container (Login/Register) */
-.login-container,
-.register-container {
-  background-color: rgba(255, 255, 255, 0.85);
-  padding: 32px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  max-width: 400px;
-  position: relative;
-  margin: auto;
-  transition: opacity 0.3s ease-in-out;
-}
-
-/* Heading styles */
-h1,
-h2 {
-  font-size: 24px;
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-/* Input Fields */
-input {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 14px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 16px;
-}
-
-input:focus {
-  outline: none;
-  border-color: #3498db;
-  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
-}
-
-/* Button Styling */
-button {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #2980b9;
-}
-
-button:disabled {
-  background-color: #bdc3c7;
-  cursor: not-allowed;
-}
-
-/* Error & Success Messages */
-.error-message {
-  color: #e74c3c;
-  text-align: center;
-  margin-top: 12px;
-}
-
-.success-message {
-  color: #2ecc71;
-  text-align: center;
-  margin-top: 12px;
-}
-
-/* Toggle Text (for switching between login/register) */
-.toggle-text {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 14px;
-}
-
-.toggle-text a {
-  color: #3498db;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.toggle-text a:hover {
-  text-decoration: underline;
-}
-
-/* Smooth Fade-In Transition for Forms */
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>

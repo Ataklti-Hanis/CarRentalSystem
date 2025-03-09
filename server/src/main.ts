@@ -14,6 +14,7 @@ async function bootstrap() {
     allowedHeaders: 'Content-Type, Authorization',
     credentials: true,
   });
+  app.use('/static', express.static('uploads'));
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();

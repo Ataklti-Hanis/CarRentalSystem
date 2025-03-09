@@ -13,6 +13,7 @@ import HomePage from '@/components/HomePage.vue'
 import DefaultLayout from '@/layout/DefaultLayout.vue'
 import AboutUs from '@/components/AboutUs.vue'
 import ContactUs from '@/components/ContactUs.vue'
+import ViewCars from '@/views/AdminView/ViewCars.vue'
 
 const isTokenExpired = (token: string) => {
   try {
@@ -61,6 +62,11 @@ const routes = [
         name: 'ContactUs',
         component: ContactUs,
       },
+      {
+        path: '/view-cars',
+        name: 'ViewCars',
+        component: ViewCars,
+      },
     ],
   },
 
@@ -94,11 +100,20 @@ const routes = [
         path: '/add-cars',
         component: AddCars,
       },
+      {
+        path: '/view-cars',
+        component: ViewCars,
+      },
     ],
   },
   {
     path: '/add-cars',
     component: AddCars,
+    beforeEnter: authGuard(['admin']),
+  },
+  {
+    path: '/view-cars',
+    component: ViewCars,
     beforeEnter: authGuard(['admin']),
   },
   // {
