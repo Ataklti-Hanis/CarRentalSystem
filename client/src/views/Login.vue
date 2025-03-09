@@ -94,9 +94,9 @@ const handleLogin = async () => {
     // redirect based on role
 
     if (decodedToken.role === 'admin') {
-      router.push('/admin')
+      router.push('/admin-dashboard')
     } else if (decodedToken.role === 'customer') {
-      router.push('/customer')
+      router.push('/customer-dashboard')
     } else {
       router.push('/')
     }
