@@ -1,4 +1,3 @@
-<!-- src/components/Home.vue -->
 <template>
   <div class="home-container">
     <h1>Welcome to the Car Rental System</h1>
@@ -87,5 +86,39 @@ p {
 
 .cta-link:hover {
   background-color: #2980b9;
+}
+
+/* Media query for mobile responsiveness */
+@media (max-width: 768px) {
+  .home-container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 28px;
+    margin-bottom: 15px;
+  }
+
+  p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .features {
+    flex-direction: column; /* Stack features vertically */
+    align-items: center; /* Center-align the feature items */
+  }
+
+  .feature {
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 20px; /* Add space between feature items */
+  }
+
+  .cta-link {
+    font-size: 14px; /* Slightly smaller text */
+    padding: 8px 16px;
+  }
 }
 </style>

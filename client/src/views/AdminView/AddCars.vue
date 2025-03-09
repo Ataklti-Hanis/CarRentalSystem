@@ -173,7 +173,7 @@ const handleLogout = () => {
 .insert-car-container {
   width: 100%;
   max-width: 600px;
-  margin: 90px auto;
+  margin: 5px auto;
   padding: 20px;
   background-color: #ffffff;
   border-radius: 10px;
