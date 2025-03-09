@@ -118,6 +118,19 @@ const handleRegister = async () => {
   successMessage.value = ''
   loading.value = true
 
+  if (
+    !registerUserFirstName.value ||
+    !registerUserLastName.value ||
+    !registerUserEmail.value ||
+    !registerUserPhone.value ||
+    !registerPassword.value ||
+    !confirmPassword.value
+  ) {
+    Swal.fire('Oops!', 'Please fill in all fields', 'error')
+    loading.value = false
+    return
+  }
+
   if (!isValidEmail(registerUserEmail.value)) {
     Swal.fire({
       icon: 'error',
@@ -247,6 +260,7 @@ const handleRegister = async () => {
   top: 0;
   left: 0;
   overflow: hidden;
+  padding-top: 40px; /* Adjust this value */
 }
 
 .auth-container::before {
@@ -258,7 +272,7 @@ const handleRegister = async () => {
   height: 100%;
   background-image: url('@/assets/adrien-vajas-DIOJmxKCA6c-unsplash.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: top left; /* Position the background at top left */
   background-attachment: fixed;
   filter: blur(8px);
   z-index: -1;
@@ -267,19 +281,22 @@ const handleRegister = async () => {
 /* Shared form styling */
 .login-container,
 .register-container {
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
   padding: 32px;
+  margin: 10px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: 100%;
-  max-width: 400px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  max-width: 400px; /* Maximum width of the form */
+  position: relative; /* Ensure they are positioned correctly */
   transition: opacity 0.3s ease-in-out;
 }
+.register-container {
+  position: relative;
+  top: 30px; /* Adjust this value to move the form down from the top */
+}
 
+/* Center text in headers */
 h2,
 h1 {
   font-size: 24px;
@@ -288,6 +305,7 @@ h1 {
   margin-bottom: 20px;
 }
 
+/* Styling input fields */
 input {
   display: block;
   width: 100%;
@@ -304,6 +322,7 @@ input:focus {
   box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
 }
 
+/* Button styling */
 button {
   display: block;
   width: 100%;
@@ -326,6 +345,7 @@ button:disabled {
   cursor: not-allowed;
 }
 
+/* Error and success message styling */
 .error-message {
   color: #e74c3c;
   text-align: center;
@@ -338,6 +358,7 @@ button:disabled {
   margin-top: 12px;
 }
 
+/* Toggle link styling */
 .toggle-text {
   text-align: center;
   margin-top: 20px;
@@ -359,6 +380,7 @@ button:disabled {
 .fade-leave-active {
   transition: opacity 0.3s;
 }
+
 .fade-enter,
 .fade-leave-to {
   opacity: 0;

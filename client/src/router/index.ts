@@ -9,6 +9,10 @@ import AdminDashboard from '@/views/AdminView/AdminDashboard.vue'
 import AddCars from '@/views/AdminView/AddCars.vue'
 import { jwtDecode } from 'jwt-decode'
 import { useAuthStore } from '@/stores/authStore'
+import HomePage from '@/components/HomePage.vue'
+import DefaultLayout from '@/layout/DefaultLayout.vue'
+import AboutUs from '@/components/AboutUs.vue'
+import ContactUs from '@/components/ContactUs.vue'
 
 const isTokenExpired = (token: string) => {
   try {
@@ -37,16 +41,29 @@ const authGuard =
 
 const routes = [
   {
-    path: '/login',
-    name: 'Login',
-    component: Login,
+    path: '/',
+    name: 'Home',
+    component: DefaultLayout,
+    children: [
+      { path: '', component: HomePage },
+      {
+        path: '/login',
+        name: 'Login',
+        component: Login,
+      },
+      {
+        path: '/aboutUs', // New About Us route
+        name: 'AboutUs', // Route name
+        component: AboutUs, // Component for the About Us page
+      },
+      {
+        path: '/contactUs',
+        name: 'ContactUs',
+        component: ContactUs,
+      },
+    ],
   },
 
-  {
-    path: '/add-cars',
-    component: AddCars,
-    beforeEnter: authGuard(['admin']),
-  },
   {
     path: '/dashboard',
     beforeEnter: (
@@ -71,6 +88,17 @@ const routes = [
   {
     path: '/admin-dashboard',
     component: AdminDashboard,
+    beforeEnter: authGuard(['admin']),
+    children: [
+      {
+        path: '/add-cars',
+        component: AddCars,
+      },
+    ],
+  },
+  {
+    path: '/add-cars',
+    component: AddCars,
     beforeEnter: authGuard(['admin']),
   },
   // {

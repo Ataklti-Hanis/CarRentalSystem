@@ -1,19 +1,29 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
-import { useAuthStore } from './stores/authStore'
+import { useAuthStore } from '@/stores/authStore'
+
 const authStore = useAuthStore()
-const isAdmin = computed(() => authStore.user?.role === 'Admin')
 const isAuthenticated = computed(() => authStore.isAuthenticated())
 </script>
 
 <template>
   <div class="auth-container">
+    <header>
+      <nav>
+        <RouterLink to="/" class="logo">Home</RouterLink>
+        <RouterLink to="/login">Login</RouterLink>
+        <RouterLink to="/aboutUs">About Us</RouterLink>
+        <RouterLink to="/contactUs">Contact Us</RouterLink>
+      </nav>
+    </header>
+
+    <!-- Content of the page -->
     <RouterView />
   </div>
 </template>
 
-<style scoped>
+<style>
 /* Full-Screen Background Effect */
 .auth-container {
   display: flex;
@@ -27,10 +37,43 @@ const isAuthenticated = computed(() => authStore.isAuthenticated())
   left: 0;
   overflow: hidden;
   background-image: url('@/assets/adrien-vajas-DIOJmxKCA6c-unsplash.jpg');
-  background-size: cover;
-  background-position: center;
+  background-size: cover; /* Ensures the image covers the entire container */
+  background-position: top left; /* Makes sure the image is positioned at the top-left corner */
   background-attachment: fixed;
+  margin: 0; /* Ensure no margin on the container */
+  padding: 0; /* Ensure no padding inside the container */
 }
+
+/* Background Blur Effect */
+.auth-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('@/assets/adrien-vajas-DIOJmxKCA6c-unsplash.jpg');
+  background-size: cover;
+  background-position: top left; /* Same as the main container */
+  background-attachment: fixed;
+  filter: blur(8px);
+  z-index: -1;
+}
+
+/* Header and Navigation Styles */
+header {
+  width: 100%;
+  position: fixed; /* Fix header at the top */
+  top: 0;
+  right: 0; /* Align header to the right */
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  z-index: 10; /* Ensure header stays above other content */
+  display: flex;
+  justify-content: flex-end; /* Align nav items to the right */
+}
+
+/* Other styles remain the same */
 
 /* Background Blur Effect */
 .auth-container::before {
@@ -79,7 +122,7 @@ nav a:hover {
   color: #3498db; /* Blue color on hover */
 }
 
-/* Logo Styling (if you have a logo image) */
+/* Logo Styling */
 .logo {
   font-size: 16px;
   font-weight: 700;
