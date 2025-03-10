@@ -82,6 +82,7 @@ const addCar = async () => {
       status: '',
       image: '',
     }
+    console.log('Car data to submit:', cars.value)
 
     success.value = 'Car added successfully'
   } catch (err) {
@@ -137,8 +138,12 @@ const handleLogout = () => {
 
         <div class="form-row">
           <div class="form-item">
-            <label for="status">Car Status:</label>
-            <input type="text" id="status" v-model="cars.status" required />
+            <label for="status">Status:</label>
+            <select id="status" v-model="cars.status" required>
+              <option value="AVAILABLE">Available</option>
+              <option value="RENTED">Rented</option>
+              <option value="UNDER_MAINTENANCE">UNDER_MAINTENANCE</option>
+            </select>
           </div>
 
           <div class="form-item">
@@ -158,6 +163,7 @@ const handleLogout = () => {
           <button type="submit" :disabled="loading" class="form-btn">
             {{ loading ? 'Adding...' : 'Add Car' }}
           </button>
+
           <!-- <button type="button" @click="navigateToDashboard" class="form-btn">
             Go to Dashboard
           </button> -->
@@ -203,6 +209,28 @@ h1 {
   font-size: 14px;
   text-decoration: none;
   transition: background-color 0.3s ease;
+}
+select {
+  padding: 10px;
+  margin-top: 6px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 14px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease;
+  appearance: none; /* Remove default browser styling */
+}
+
+select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+select option {
+  padding: 10px;
 }
 
 .nav-btn:hover {

@@ -14,6 +14,8 @@ import DefaultLayout from '@/layout/DefaultLayout.vue'
 import AboutUs from '@/components/AboutUs.vue'
 import ContactUs from '@/components/ContactUs.vue'
 import ViewCars from '@/views/AdminView/ViewCars.vue'
+import UserDashboard from '@/views/UserView/UserDashboard.vue'
+import UserViewCars from '@/views/UserView/UserViewCars.vue'
 
 const isTokenExpired = (token: string) => {
   try {
@@ -23,6 +25,7 @@ const isTokenExpired = (token: string) => {
     return true
   }
 }
+
 const authGuard =
   (role: string[] = []) =>
   (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
@@ -43,7 +46,6 @@ const authGuard =
 const routes = [
   {
     path: '/',
-    name: 'Home',
     component: DefaultLayout,
     children: [
       { path: '', component: HomePage },
@@ -61,11 +63,6 @@ const routes = [
         path: '/contactUs',
         name: 'ContactUs',
         component: ContactUs,
-      },
-      {
-        path: '/view-cars',
-        name: 'ViewCars',
-        component: ViewCars,
       },
     ],
   },
@@ -87,7 +84,7 @@ const routes = [
       if (decodedToken.role === 'admin') {
         return next('/admin-dashboard')
       } else {
-        return next('/user-dashboard')
+        return next('/customer-dashboard')
       }
     },
   },
@@ -97,7 +94,7 @@ const routes = [
     beforeEnter: authGuard(['admin']),
     children: [
       {
-        path: '/add-cars',
+        path: '/add-cars', // No leading slash here, it is a child route
         component: AddCars,
       },
       {
@@ -116,10 +113,22 @@ const routes = [
     component: ViewCars,
     beforeEnter: authGuard(['admin']),
   },
-  // {
-  //   path: '/user-dashboard',
-  //   component: UserDashboard,
-  // }
+  {
+    path: '/customer-dashboard',
+    component: UserDashboard,
+    beforeEnter: authGuard(['customer']),
+    children: [
+      {
+        path: '/user-view-cars', // Corrected the path to be a child of customer-dashboard
+        component: UserViewCars,
+      },
+    ],
+  },
+  {
+    path: '/user-view-cars',
+    component: UserViewCars,
+    beforeEnter: authGuard(['customer']),
+  },
 ]
 
 const router = createRouter({

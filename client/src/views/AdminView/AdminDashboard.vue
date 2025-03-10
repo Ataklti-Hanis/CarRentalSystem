@@ -28,8 +28,8 @@ const handleLogout = () => {
       <nav class="sidebar">
         <ul>
           <li><router-link to="admin-dashboard">Admin Dashboard</router-link></li>
-          <li><router-link to="add-cars">Add Cars</router-link></li>
-          <li><router-link to="view-cars">View Cars</router-link></li>
+          <li><router-link to="add-cars">➕Add Cars</router-link></li>
+          <li><router-link to="view-cars">🚘View Cars</router-link></li>
         </ul>
       </nav>
 
