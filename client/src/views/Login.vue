@@ -248,7 +248,7 @@ const handleRegister = async () => {
     </div>
   </div>
 </template>
-<style>
+<style scoped>
 /* Global styling for full-screen background effect */
 .auth-container {
   display: flex;
@@ -281,12 +281,12 @@ const handleRegister = async () => {
 /* Shared form styling */
 .login-container,
 .register-container {
-  background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent white */
   padding: 32px;
-  margin: 10px;
+  margin: 80px auto;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 100%;
+  width: 80%;
   max-width: 400px; /* Maximum width of the form */
   position: relative; /* Ensure they are positioned correctly */
   transition: opacity 0.3s ease-in-out;
@@ -303,6 +303,7 @@ h1 {
   font-weight: 600;
   text-align: center;
   margin-bottom: 20px;
+  color: #3498db;
 }
 
 /* Styling input fields */
@@ -311,15 +312,26 @@ input {
   width: 100%;
   padding: 12px;
   margin-bottom: 14px;
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 6px;
   font-size: 16px;
+  background: rgba(255, 255, 255, 0.2); /* Slightly transparent, blending into container */
+  color: white; /* White text for contrast */
+  transition:
+    background 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
 }
 
+/* Input placeholder styling */
+input::placeholder {
+  color: rgba(255, 255, 255, 0.7); /* Light white for subtle effect */
+}
+
+/* Focus effect */
 input:focus {
   outline: none;
-  border-color: #3498db;
-  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+  background: rgba(255, 255, 255, 0.3); /* Slightly brighter on focus */
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
 /* Button styling */
@@ -363,16 +375,19 @@ button:disabled {
   text-align: center;
   margin-top: 20px;
   font-size: 14px;
+  color: #f1f1f1;
 }
 
+/* Toggle link styling */
 .toggle-text a {
-  color: #3498db;
+  color: #5d9cec; /* Google-like blue, more natural for links */
   text-decoration: none;
   font-weight: 500;
 }
 
 .toggle-text a:hover {
   text-decoration: underline;
+  color: #5d9cec; /* Darker blue on hover to provide contrast */
 }
 
 /* Smooth fade-in effect */

@@ -64,6 +64,11 @@ const routes = [
         name: 'ContactUs',
         component: ContactUs,
       },
+      {
+        path: '/user-view-cars',
+        name: 'UserViewCars',
+        component: UserViewCars,
+      },
     ],
   },
 
