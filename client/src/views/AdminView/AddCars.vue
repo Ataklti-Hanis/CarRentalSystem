@@ -82,7 +82,6 @@ const addCar = async () => {
       status: '',
       image: '',
     }
-    console.log('Car data to submit:', cars.value)
 
     success.value = 'Car added successfully'
   } catch (err) {
@@ -107,6 +106,7 @@ const handleLogout = () => {
   router.push('/')
 }
 </script>
+
 <template>
   <div class="insert-car-container">
     <h1>Add New Car</h1>
@@ -115,24 +115,48 @@ const handleLogout = () => {
         <div class="form-row">
           <div class="form-item">
             <label for="make">Car Make:</label>
-            <input type="text" id="make" v-model="cars.make" required />
+            <input
+              type="text"
+              id="make"
+              v-model="cars.make"
+              placeholder="Enter car make"
+              required
+            />
           </div>
 
           <div class="form-item">
             <label for="model">Car Model:</label>
-            <input type="text" id="model" v-model="cars.model" required />
+            <input
+              type="text"
+              id="model"
+              v-model="cars.model"
+              placeholder="Enter car model"
+              required
+            />
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-item">
             <label for="year">Year of Manufacture:</label>
-            <input type="number" id="year" v-model="cars.year" required />
+            <input
+              type="number"
+              id="year"
+              v-model="cars.year"
+              placeholder="Enter year of manufacture"
+              required
+            />
           </div>
 
           <div class="form-item">
             <label for="pricePerDay">Price Per Day ($):</label>
-            <input type="number" id="pricePerDay" v-model="cars.pricePerDay" required />
+            <input
+              type="number"
+              id="pricePerDay"
+              v-model="cars.pricePerDay"
+              placeholder="Enter price per day"
+              required
+            />
           </div>
         </div>
 
@@ -140,22 +164,36 @@ const handleLogout = () => {
           <div class="form-item">
             <label for="status">Status:</label>
             <select id="status" v-model="cars.status" required>
+              <option value="" disabled selected>Select Status</option>
               <option value="AVAILABLE">Available</option>
               <option value="RENTED">Rented</option>
-              <option value="UNDER_MAINTENANCE">UNDER_MAINTENANCE</option>
+              <option value="UNDER_MAINTENANCE">Under Maintenance</option>
             </select>
           </div>
 
           <div class="form-item">
             <label for="availability">Availability:</label>
-            <input type="text" id="availability" v-model="cars.availability" required />
+            <input
+              type="text"
+              id="availability"
+              v-model="cars.availability"
+              placeholder="Enter availability"
+              required
+            />
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-item full-width">
             <label for="image">Upload Car Image:</label>
-            <input type="file" id="image" @change="handleImageUpload" accept="image/*" required />
+            <input
+              type="file"
+              id="image"
+              @change="handleImageUpload"
+              accept="image/*"
+              required
+              class="file-input"
+            />
           </div>
         </div>
 
@@ -163,10 +201,6 @@ const handleLogout = () => {
           <button type="submit" :disabled="loading" class="form-btn">
             {{ loading ? 'Adding...' : 'Add Car' }}
           </button>
-
-          <!-- <button type="button" @click="navigateToDashboard" class="form-btn">
-            Go to Dashboard
-          </button> -->
         </div>
 
         <p class="success" v-if="success">{{ success }}</p>
@@ -175,207 +209,154 @@ const handleLogout = () => {
     </form>
   </div>
 </template>
+
 <style scoped>
 .insert-car-container {
-  width: 100%;
-  max-width: 600px;
-  margin: 5px auto;
+  max-width: 500px;
+  margin: 0 auto;
   padding: 20px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.1);
-  font-family: 'Arial', sans-serif;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
   text-align: center;
-  font-size: 20px;
-  color: #333;
-  margin-bottom: 15px;
-}
-
-.nav-links {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
   margin-bottom: 20px;
-}
-
-.nav-btn {
-  background-color: #007bff;
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-size: 14px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-select {
-  padding: 10px;
-  margin-top: 6px;
-  margin-bottom: 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  width: 100%;
-  font-size: 14px;
-  background-color: #f9f9f9;
-  transition: border-color 0.3s ease;
-  appearance: none; /* Remove default browser styling */
-}
-
-select:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  outline: none;
-}
-
-select option {
-  padding: 10px;
-}
-
-.nav-btn:hover {
-  background-color: #0056b3;
+  color: #3498db;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
+  width: 100%;
 }
-
 fieldset {
   border: none;
-  padding: 25px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-}
-
-legend {
-  font-size: 16px;
-  font-weight: bold;
-  color: #007bff;
-  text-align: center;
-  margin-bottom: 15px;
+  padding: 0;
+  margin: 0;
 }
 
 .form-row {
   display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  margin-bottom: 20px;
+  flex-direction: column;
+  gap: 15px;
+  margin: 0 auto;
 }
 
 .form-item {
   display: flex;
-  flex-direction: column;
-  flex: 1 1 calc(50% - 15px);
+  flex-direction: row;
+  gap: 15px;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 15px;
+  margin-right: 45px;
 }
 
 label {
-  font-size: 13px;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 6px;
+  color: white;
+  margin-right: 10px;
+  width: 30%;
+  text-align: right;
 }
 
-input {
+input[type='text'],
+input[type='number'],
+select,
+input[type='file'] {
+  width: 60%;
   padding: 10px;
-  margin-top: 6px;
-  margin-bottom: 12px;
+  border-radius: 5px;
   border: 1px solid #ccc;
-  border-radius: 8px;
-  width: 100%;
-  font-size: 14px;
-  background-color: #f9f9f9;
-  transition: border-color 0.3s ease;
-}
-
-input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  outline: none;
 }
 
 input[type='file'] {
-  padding: 6px;
-  font-size: 13px;
+  background-color: #f0f0f0;
+  cursor: pointer;
 }
 
+input[type='file']:hover {
+  background-color: #e0e0e0;
+}
 .button-row {
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  width: 100%; /* Make the button row span the full width */
+  justify-content: center; /* Center the button horizontally */
+  width: 100%;
 }
-
-.form-btn {
-  background-color: #28a745;
+button.form-btn {
+  padding: 10px 20px;
+  background-color: #4caf50;
   color: white;
-  padding: 10px 16px;
-  font-size: 14px;
   border: none;
-  border-radius: 6px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 100%; /* Make buttons take the full width */
+  font-size: 16px;
+  width: 80%;
+  margin: 0 auto;
 }
 
-.form-btn:disabled {
-  background-color: #6c757d;
+button.form-btn:disabled {
+  background-color: #ddd;
   cursor: not-allowed;
 }
 
-.form-btn:hover:not(:disabled) {
-  background-color: #218838;
+.success,
+.error {
+  text-align: center;
+  font-weight: bold;
 }
 
 .success {
-  color: #28a745;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 12px;
+  color: green;
 }
 
 .error {
-  color: #dc3545;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 12px;
+  color: red;
 }
 
-.logout-btn {
-  background-color: #dc3545;
-  width: 100%;
-  padding: 10px;
-  font-size: 14px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-top: 20px;
-  transition: background-color 0.3s ease;
-}
-
-.logout-btn:hover {
-  background-color: #c82333;
-}
-
-@media (max-width: 768px) {
-  .insert-car-container {
-    padding: 20px;
-    max-width: 450px;
+/* Media Queries for responsiveness */
+@media screen and (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
   }
 
   .form-item {
-    flex: 1 1 100%; /* Stack fields on smaller screens */
-  }
-
-  .form-btn {
-    width: 100%; /* Make buttons take full width on small screens */
-  }
-
-  .button-row {
     flex-direction: column;
-    gap: 15px;
+    align-items: flex-start;
+  }
+
+  label {
+    text-align: left;
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  input[type='text'],
+  input[type='number'],
+  select,
+  input[type='file'] {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .insert-car-container {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .form-item input,
+  .form-item select {
+    font-size: 1rem;
+  }
+
+  button.form-btn {
+    font-size: 14px;
   }
 }
 </style>

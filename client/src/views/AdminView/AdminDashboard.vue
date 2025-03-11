@@ -77,7 +77,7 @@ const handleLogout = () => {
   background-size: cover;
   background-position: top left;
   background-attachment: fixed;
-  filter: blur(8px);
+  filter: blur(20px);
   z-index: -1;
 }
 
@@ -147,7 +147,7 @@ header h1 {
 
 .sidebar {
   width: 220px; /* Increase width for better spacing */
-  background-color: rgba(0, 0, 0, 0.7); /* Dark background */
+  background-color: rgba(0, 0, 0, 0.4); /* Dark background */
   padding: 20px;
   display: flex;
   flex-direction: column;

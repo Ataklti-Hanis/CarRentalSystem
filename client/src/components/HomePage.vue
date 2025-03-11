@@ -13,6 +13,7 @@
           </p>
           <RouterLink to="/user-view-cars" class="cta-link">View Cars</RouterLink>
         </div>
+
         <div class="feature">
           <h2>Make a Reservation</h2>
           <p>Book a car for your trip today. Secure, simple, and fast!</p>

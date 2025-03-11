@@ -128,14 +128,16 @@ onMounted(() => {
       <li v-for="car in cars" :key="car.id" class="car-card">
         <div v-if="!car.isEditing">
           <img :src="car.image" alt="Car Image" />
-          <h2>{{ car.make }}</h2>
-          <p>Model: {{ car.model }}</p>
-          <p>Availability: {{ car.availability }}</p>
-          <p>Year: {{ car.year }}</p>
-          <p>Price per Day: {{ car.pricePerDay }}</p>
-          <p>
-            <strong> {{ car.status }}</strong>
-          </p>
+          <div class="car-info">
+            <h2>{{ car.make }}</h2>
+            <p>Model: {{ car.model }}</p>
+            <p>Availability: {{ car.availability }}</p>
+            <p>Year: {{ car.year }}</p>
+            <p>Price per Day: {{ car.pricePerDay }}</p>
+            <p>
+              <strong> {{ car.status }}</strong>
+            </p>
+          </div>
           <div class="button-group">
             <button @click="editCar(car)" class="update-btn">Update</button>
             <button @click="deleteCar(car.id)" class="delete-btn">Delete</button>
@@ -150,7 +152,11 @@ onMounted(() => {
               <input v-model="car.availability" placeholder="car availability" />
               <input v-model="car.year" placeholder="car year" />
               <input v-model="car.pricePerDay" placeholder="car price per day" />
-              <input v-model="car.status" placeholder="car status" />
+              <select id="status" class="status-select" v-model="car.status" required>
+                <option value="AVAILABLE">Available</option>
+                <option value="RENTED">Rented</option>
+                <option value="UNDER_MAINTENANCE">Under Maintenance</option>
+              </select>
               <input type="file" @change="handleImageUpload($event, car)" accept="image/*" />
               <div class="btn-group">
                 <button @click="saveCar(car)" class="update-btn">Save</button>
@@ -163,6 +169,7 @@ onMounted(() => {
     </ul>
   </div>
 </template>
+
 <style scoped>
 .view-cars-container {
   padding: 20px;
@@ -171,8 +178,9 @@ onMounted(() => {
 
 h1 {
   font-size: 1.75rem;
-  color: #333;
+  color: #007bff;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .loading,
@@ -191,8 +199,8 @@ ul {
 }
 
 .car-card {
-  background-color: #fff;
-  border: 1px solid #ddd;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: none;
   border-radius: 8px;
   padding: 15px;
   width: calc(50% - 20px);
@@ -206,29 +214,51 @@ ul {
 
 .car-card img {
   width: 100%;
-  height: auto;
-  max-width: 180px;
+  height: 180px; /* Set a fixed height */
+  object-fit: cover; /* Ensures the image fits within the area */
   border-radius: 8px;
   margin-bottom: 15px;
 }
 
 .car-card h2 {
-  font-size: 1.3rem;
-  color: #333;
+  font-size: 1.4rem; /* Slightly bigger font for car title */
+  color: #f1f1f1;
   margin: 10px 0;
+  line-height: 1.4; /* Adds space between lines */
 }
 
 .car-card p {
   font-size: 1rem;
-  color: #666;
+  color: #f1f1f1;
   margin: 5px 0;
+  line-height: 1.4; /* Improve spacing between paragraphs */
 }
-
+.car-info {
+  text-align: center;
+}
 .button-group {
   display: flex;
   justify-content: space-between;
   width: 100%;
   margin-top: 15px;
+}
+.status-select {
+  width: 100%;
+  max-width: 400px; /* Maximum width */
+  padding: 12px 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #e3e6c3;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.status-select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 .update-btn,
@@ -263,10 +293,15 @@ ul {
   margin: 0 auto; /* Center align the form */
   padding: 20px;
   border-radius: 8px;
-  /* border: 1px solid #ddd; */
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center align form elements */
+  align-items: center;
+}
+.loading {
+  font-size: 1.5rem; /* Adjust the font size */
+  color: #24031b; /* Set the color to a blue shade */
+  text-align: center; /* Center the text horizontally */
+  margin-top: 20px; /* Add some space above the loading text */
 }
 
 .edit-form input {
@@ -274,7 +309,6 @@ ul {
   max-width: 400px; /* Maximum width for input fields */
   padding: 12px 15px;
   margin: 10px 0;
-  /* border: 1px solid #ccc; */
   border-radius: 8px;
   font-size: 1rem;
   background-color: #e3e6c3;
@@ -333,5 +367,66 @@ ul {
 
 .btn-group button:hover {
   background-color: #218838;
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+  .car-card {
+    width: calc(50% - 20px); /* Adjust card width */
+  }
+
+  .edit-form {
+    width: 100%;
+    max-width: 100%; /* Ensure form fills the available space */
+  }
+
+  .car-card img {
+    max-width: 150px; /* Resize the car image */
+  }
+
+  .button-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .update-btn,
+  .delete-btn,
+  .cancel-btn,
+  .btn-group button {
+    width: 100%; /* Full width buttons for smaller screens */
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem; /* Adjust heading font size for smaller screens */
+  }
+
+  .car-card {
+    width: 100%; /* Full width cards on very small screens */
+  }
+
+  .car-card h2 {
+    font-size: 1.1rem; /* Adjust car title size */
+  }
+
+  .car-card p {
+    font-size: 0.9rem; /* Adjust paragraph font size */
+  }
+
+  .edit-form input {
+    font-size: 0.9rem; /* Smaller font for form inputs */
+  }
+
+  .update-btn,
+  .delete-btn {
+    padding: 8px 15px; /* Adjust padding for smaller buttons */
+  }
+
+  .cancel-btn,
+  .btn-group button {
+    padding: 8px 15px;
+  }
 }
 </style>

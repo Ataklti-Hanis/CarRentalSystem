@@ -112,7 +112,7 @@ onMounted(() => {
 .no-cars {
   font-size: 1.5rem;
   text-align: center;
-  color: #888;
+  color: #0a0a23;
 }
 
 /* Cars list */
@@ -124,8 +124,8 @@ onMounted(() => {
 }
 
 .car-card {
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -152,7 +152,7 @@ onMounted(() => {
 
 .car-info h2 {
   font-size: 1.8rem;
-  color: #333;
+  color: #f1f1f1;
   margin-top: 10px;
 }
 
@@ -171,7 +171,7 @@ onMounted(() => {
 }
 
 .modal-content {
-  background-color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 20px; /* Reduce padding */
   border-radius: 10px;
   max-width: 400px; /* Reduce width */
@@ -190,7 +190,7 @@ onMounted(() => {
 }
 .modal-header h2 {
   font-size: 1.4rem; /* Reduce font size */
-  color: #333;
+  color: #f1f1f1;
   margin: 0;
 }
 .modal-content img {
@@ -202,20 +202,20 @@ onMounted(() => {
 
 .modal-content h2 {
   font-size: 2rem;
-  color: #333;
+  color: #f1f1f1;
 }
 
 .modal-content p {
   font-size: 0.9rem; /* Reduce text size */
-  color: #444;
+  color: #f1f1f1;
   margin: 5px 0;
 }
 
 .close-btn {
   font-size: 1.8rem;
   cursor: pointer;
-  color: #333;
-  background: #fff;
+  color: #fff;
+  background: #e74c3c;
   border: none;
   border-radius: 50%;
   width: 35px;
