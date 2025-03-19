@@ -93,7 +93,7 @@ const deleteCar = async (carId) => {
   if (!confirmDelete.isConfirmed) return
 
   try {
-    const response = await fetch(`http://localhost:3000/${carId}`, {
+    const response = await fetch(`http://localhost:3000/car/${carId}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${accessToken}`,

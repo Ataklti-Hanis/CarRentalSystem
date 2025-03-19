@@ -441,7 +441,7 @@ button:disabled {
   width: 100%;
   position: relative;
   margin: 0;
-  padding: 0;
+  padding: 10px;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -468,7 +468,7 @@ header {
   position: fixed;
   top: 0;
   right: 0;
-  padding: 10px 20px;
+  padding: 20px 20px;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 10;
   display: flex;

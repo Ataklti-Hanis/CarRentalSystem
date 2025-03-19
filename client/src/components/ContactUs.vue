@@ -1,3 +1,21 @@
+<script setup>
+import { ref } from 'vue'
+
+const form = ref({
+  name: '',
+  email: '',
+  message: '',
+})
+
+const submitForm = () => {
+  const { name, email, message } = form.value
+  const subject = encodeURIComponent(`Message from ${name}`)
+  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)
+
+  window.location.href = `mailto:atakltihanis14@gmail.com?subject=${subject}&body=${body}`
+}
+</script>
+
 <template>
   <div class="contact-us">
     <div class="contact-form">
@@ -25,21 +43,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { ref } from 'vue'
-
-const form = ref({
-  name: '',
-  email: '',
-  message: '',
-})
-
-const submitForm = () => {
-  console.log('Form Submitted:', form.value)
-  // Handle submission (API call, etc.)
-}
-</script>
 
 <style scoped>
 /* Main Container */
@@ -160,7 +163,6 @@ const submitForm = () => {
   .form-group textarea {
     font-size: 14px;
     padding: 10px;
-    margin-right: 10px;
   }
 
   .submit-btn {
