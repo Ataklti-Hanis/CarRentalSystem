@@ -1,37 +1,113 @@
 <template>
-  <div class="home-container">
-    <div class="home-content">
-      <h1>Welcome to the Car Rental System</h1>
-      <p>Your one-stop solution for renting cars with ease and convenience.</p>
+  <div class="min-h-screen flex flex-col items-center justify-between bg-gray-800 px-6 py-12">
+    <!-- Main Content Section -->
+    <div class="max-w-6xl w-full text-center space-y-8">
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-white leading-tight">
+        Welcome to the Car Rental System
+      </h1>
+      <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+        Your one-stop solution for renting cars with ease and convenience.
+      </p>
 
-      <div class="features">
-        <div class="feature">
-          <h2>Browse Available Cars</h2>
-          <p>
-            Explore a wide variety of cars to suit your needs. From economy to luxury, we've got it
-            all.
-          </p>
-          <RouterLink to="/user-view-cars" class="cta-link">View Cars</RouterLink>
+      <!-- Features Section -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div
+          class="bg-gray-900 border border-gray-700 shadow-md rounded-2xl p-6 hover:shadow-lg transition-all duration-300"
+        >
+          <h2 class="text-2xl font-semibold text-white">Browse Available Cars</h2>
+          <p class="text-gray-400 mt-2">Explore a variety of cars, from economy to luxury.</p>
+          <RouterLink
+            to="/home-view-cars"
+            class="inline-block mt-4 bg-blue-500 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-blue-600 transition duration-300"
+          >
+            View Cars
+          </RouterLink>
         </div>
 
-        <div class="feature">
-          <h2>Make a Reservation</h2>
-          <p>Book a car for your trip today. Secure, simple, and fast!</p>
-          <RouterLink to="/reserve" class="cta-link">Book Now</RouterLink>
+        <div
+          class="bg-gray-900 border border-gray-700 shadow-md rounded-2xl p-6 hover:shadow-lg transition-all duration-300"
+        >
+          <h2 class="text-2xl font-semibold text-white">Make a Reservation</h2>
+          <p class="text-gray-400 mt-2">Book a car securely and quickly.</p>
+          <RouterLink
+            to="/reserve"
+            class="inline-block mt-4 bg-green-500 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-green-600 transition duration-300"
+          >
+            Book Now
+          </RouterLink>
         </div>
-        <div class="feature">
-          <h2>Manage Your Rentals</h2>
-          <p>Track your rentals, view history, and manage upcoming bookings easily.</p>
-          <RouterLink to="/my-rentals" class="cta-link">My Rentals</RouterLink>
+
+        <div
+          class="bg-gray-900 border border-gray-700 shadow-md rounded-2xl p-6 hover:shadow-lg transition-all duration-300"
+        >
+          <h2 class="text-2xl font-semibold text-white">Manage Your Rentals</h2>
+          <p class="text-gray-400 mt-2">Track, view history, and manage bookings.</p>
+          <RouterLink
+            to="/my-rentals"
+            class="inline-block mt-4 bg-yellow-500 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-yellow-600 transition duration-300"
+          >
+            My Rentals
+          </RouterLink>
         </div>
-        <!-- New Feature Section -->
-        <div class="feature">
-          <h2>Customer Support</h2>
-          <p>Get help with any questions or issues you have regarding your rentals.</p>
-          <RouterLink to="/support" class="cta-link">Contact Support</RouterLink>
+
+        <div
+          class="bg-gray-900 border border-gray-700 shadow-md rounded-2xl p-6 hover:shadow-lg transition-all duration-300"
+        >
+          <h2 class="text-2xl font-semibold text-white">Customer Support</h2>
+          <p class="text-gray-400 mt-2">Get help with any questions or issues.</p>
+          <RouterLink
+            to="/support"
+            class="inline-block mt-4 bg-red-500 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-red-600 transition duration-300"
+          >
+            Contact Support
+          </RouterLink>
         </div>
       </div>
     </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 text-white py-8 w-full">
+      <div class="max-w-6xl mx-auto text-center">
+        <div class="flex justify-center space-x-6">
+          <a
+            href="https://www.youtube.com/@AtakltiHanis"
+            target="_blank"
+            class="hover:text-blue-500 transition duration-300"
+          >
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a
+            href="https://github.com/Ataklti-Hanis"
+            target="_blank"
+            class="hover:text-gray-500 transition duration-300"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/ataklti-hanis-a85163347/"
+            target="_blank"
+            class="hover:text-blue-700 transition duration-300"
+          >
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a
+            href="https://web.facebook.com/AtakltiH14"
+            target="_blank"
+            class="hover:text-blue-700 transition duration-300"
+          >
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a
+            href="https://www.tiktok.com/@ataklti7"
+            target="_blank"
+            class="hover:text-black transition duration-300"
+          >
+            <i class="fab fa-tiktok"></i>
+          </a>
+        </div>
+        <p class="text-gray-400 mt-4">&copy; 2025 Car Rental System. All rights reserved.</p>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -39,221 +115,4 @@
 // Add any logic needed for the homepage, if applicable
 </script>
 
-<style scoped>
-.home-container {
-  text-align: center;
-  padding: 50px;
-  font-size: 20px;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  margin: 90px;
-}
-
-.home-content {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-h1 {
-  font-size: 36px;
-  margin-bottom: 20px;
-  color: #3498db;
-}
-
-p {
-  font-size: 18px;
-  margin-bottom: 40px;
-}
-
-.features {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-top: 30px;
-}
-
-.feature {
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 20px;
-  border-radius: 10px;
-  width: 250px;
-  text-align: center;
-  flex: 1 1 calc(33.333% - 20px); /* Flex items adjust based on screen width */
-}
-
-.feature h2 {
-  font-size: 22px;
-  color: #ecf0f1;
-  margin-bottom: 10px;
-}
-
-.cta-link {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 10px 20px;
-  background-color: #3498db;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-}
-
-.cta-link:hover {
-  background-color: #2980b9;
-}
-
-/* Mobile (Phones) */
-@media (max-width: 480px) {
-  .home-container {
-    margin-top: 50px;
-    padding: 20px;
-  }
-
-  .home-content {
-    padding: 20px;
-  }
-
-  h1 {
-    font-size: 28px;
-    margin-bottom: 20px;
-  }
-
-  p {
-    font-size: 16px;
-    margin-bottom: 30px;
-  }
-
-  .features {
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-  }
-
-  .feature {
-    width: 100%;
-    max-width: 350px;
-    margin-bottom: 25px;
-    padding: 25px;
-  }
-
-  .cta-link {
-    font-size: 14px;
-    padding: 12px 20px;
-  }
-}
-
-/* Tablet (Portrait) */
-@media (max-width: 768px) {
-  .home-container {
-    margin-top: 50px;
-    padding: 20px;
-  }
-
-  .home-content {
-    padding: 20px;
-  }
-
-  h1 {
-    font-size: 32px;
-    margin-bottom: 15px;
-  }
-
-  p {
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
-
-  .features {
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-  }
-
-  .feature {
-    width: 100%;
-    max-width: 400px;
-    margin-bottom: 20px;
-  }
-
-  .cta-link {
-    font-size: 14px;
-    padding: 12px 20px;
-  }
-}
-
-/* Small Laptop (Small desktop) */
-@media (max-width: 1024px) {
-  .home-container {
-    margin: 30px;
-    padding: 30px;
-  }
-
-  .home-content {
-    padding: 30px;
-  }
-
-  h1 {
-    font-size: 34px;
-    margin-bottom: 20px;
-  }
-
-  p {
-    font-size: 18px;
-    margin-bottom: 25px;
-  }
-
-  .features {
-    flex-direction: row;
-    justify-content: space-evenly;
-  }
-
-  .feature {
-    width: 250px;
-    max-width: 250px;
-    margin-bottom: 20px;
-  }
-
-  .cta-link {
-    font-size: 16px;
-    padding: 10px 20px;
-  }
-}
-
-/* Desktop */
-@media (min-width: 1025px) {
-  .home-container {
-    margin: 50px;
-    padding: 50px;
-  }
-
-  .home-content {
-    padding: 50px;
-  }
-
-  h1 {
-    font-size: 36px;
-    margin-bottom: 30px;
-  }
-
-  p {
-    font-size: 20px;
-    margin-bottom: 40px;
-  }
-
-  .features {
-    flex-direction: row;
-    justify-content: space-evenly;
-  }
-
-  .feature {
-    width: 250px;
-    max-width: 250px;
-  }
-
-  .cta-link {
-    font-size: 16px;
-    padding: 10px 20px;
-  }
-}
-</style>
+<style scoped></style>

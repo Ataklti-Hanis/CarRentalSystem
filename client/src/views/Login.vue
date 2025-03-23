@@ -187,217 +187,127 @@ const handleRegister = async () => {
 </script>
 
 <template>
-  <div class="auth-container">
-    <div class="login-container" v-if="!showRegister">
-      <h2>LogIn</h2>
-      <form class="login-form" v-if="!showRegister">
-        <input type="email" placeholder="Enter your email" v-model="email" required />
-        <input type="password" placeholder="Enter your password" v-model="password" required />
-        <button type="button" @click="handleLogin" :disabled="loading">
-          {{ loading ? 'Logging in...' : 'Login' }}
-        </button>
-        <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
-        <p v-if="successMessage" class="success-message">{{ successMessage }}</p>
+  <div class="flex justify-center items-center min-h-screen bg-gray-800">
+    <!-- Outer container, full screen background -->
+    <div class="bg-gray-800 shadow-lg rounded-lg p-8 w-full max-w-md">
+      <!-- Login form container -->
+      <div
+        v-if="!showRegister"
+        class="bg-gray-800 bg-opacity-90 p-6 rounded-lg border border-gray-500"
+      >
+        <h2 class="text-2xl font-semibold text-center mb-6 text-white">Login</h2>
+        <form @submit.prevent="handleLogin">
+          <input
+            type="email"
+            v-model="email"
+            placeholder="Enter your email"
+            class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 mb-4 text-white placeholder-white"
+            required
+          />
+          <input
+            type="password"
+            v-model="password"
+            placeholder="Enter your password"
+            class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 mb-4 text-white placeholder-white"
+            required
+          />
+          <button
+            type="submit"
+            :disabled="loading"
+            class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300"
+          >
+            {{ loading ? 'Logging in...' : 'Login' }}
+          </button>
+          <p v-if="errorMessage" class="text-red-500 text-center mt-3">{{ errorMessage }}</p>
+          <p v-if="successMessage" class="text-green-500 text-center mt-3">{{ successMessage }}</p>
+          <p class="text-center mt-4 text-white">
+            Don't have an account?
+            <a href="#" class="text-blue-600 hover:underline" @click.prevent="toggleRegister">
+              Register here
+            </a>
+          </p>
+        </form>
+      </div>
 
-        <p class="toggle-text">
-          Don't have an account?
-          <a href="#" @click.prevent="toggleRegister">Register here</a>
-        </p>
-      </form>
-    </div>
-    <!-- Registration Form -->
-    <div class="register-container" v-else>
-      <h1>Register</h1>
-      <form class="register-form">
-        <input
-          v-model="registerUserFirstName"
-          type="text"
-          placeholder="Enter your first Name"
-          required
-        />
-        <input
-          v-model="registerUserLastName"
-          type="text"
-          placeholder="Enter your last Name"
-          required
-        />
-        <input v-model="registerUserEmail" type="email" placeholder="Enter your email" required />
-        <input v-model="registerUserPhone" type="tel" placeholder="Enter you phone number" />
-        <input
-          v-model="registerPassword"
-          type="password"
-          placeholder="Enter your password"
-          required
-        />
-        <input
-          v-model="confirmPassword"
-          type="password"
-          placeholder="Confirm your password"
-          required
-        />
-        <button @click="handleRegister" type="button" :disabled="loading">
-          {{ loading ? 'Registering...' : 'Register' }}
-        </button>
-        <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
-        <p v-if="successMessage" class="success-message">{{ successMessage }}</p>
-        <p class="toggle-text">
-          Already have an account?
-          <a href="#" @click="toggleRegister">login here</a>
-        </p>
-      </form>
+      <!-- Registration form container -->
+      <div v-else>
+        <h2 class="text-2xl font-semibold text-center mb-6 text-white">Register</h2>
+        <form
+          @submit.prevent="handleRegister"
+          class="bg-gray-800 bg-opacity-90 p-6 rounded-lg border border-gray-500"
+        >
+          <input
+            v-model="registerUserFirstName"
+            type="text"
+            placeholder="First Name"
+            class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 mb-4 text-white placeholder-white"
+            required
+          />
+          <input
+            v-model="registerUserLastName"
+            type="text"
+            placeholder="Last Name"
+            class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 mb-4 text-white placeholder-white"
+            required
+          />
+          <input
+            v-model="registerUserEmail"
+            type="email"
+            placeholder="Email"
+            class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 mb-4 text-white placeholder-white"
+            required
+          />
+          <input
+            v-model="registerUserPhone"
+            type="tel"
+            placeholder="Phone Number"
+            class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 mb-4 text-white placeholder-white"
+          />
+          <input
+            v-model="registerPassword"
+            type="password"
+            placeholder="Password"
+            class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 mb-4 text-white placeholder-white"
+            required
+          />
+          <input
+            v-model="confirmPassword"
+            type="password"
+            placeholder="Confirm Password"
+            class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 mb-4 text-white placeholder-white"
+            required
+          />
+          <button
+            type="submit"
+            :disabled="loading"
+            class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition duration-300"
+          >
+            {{ loading ? 'Registering...' : 'Register' }}
+          </button>
+          <p v-if="errorMessage" class="text-red-500 text-center mt-3">{{ errorMessage }}</p>
+          <p v-if="successMessage" class="text-green-500 text-center mt-3">{{ successMessage }}</p>
+          <p class="text-center mt-4 text-white">
+            Already have an account?
+            <a href="#" class="text-blue-600 hover:underline" @click="toggleRegister">
+              Login here
+            </a>
+          </p>
+        </form>
+      </div>
     </div>
   </div>
 </template>
+
 <style scoped>
-/* Global styling for full-screen background effect */
-.auth-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  width: 100vw;
-  position: fixed;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  padding-top: 40px; /* Adjust this value */
-}
-
-.auth-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('@/assets/adrien-vajas-DIOJmxKCA6c-unsplash.jpg');
-  background-size: cover;
-  background-position: top left; /* Position the background at top left */
-  background-attachment: fixed;
-  filter: blur(8px);
-  z-index: -1;
-}
-
-/* Shared form styling */
-.login-container,
-.register-container {
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent white */
-  padding: 32px;
-  margin: 80px auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 80%;
-  max-width: 400px; /* Maximum width of the form */
-  position: relative; /* Ensure they are positioned correctly */
-  transition: opacity 0.3s ease-in-out;
-}
-.register-container {
-  position: relative;
-  top: 30px; /* Adjust this value to move the form down from the top */
-}
-
-/* Center text in headers */
-h2,
-h1 {
-  font-size: 24px;
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 20px;
-  color: #3498db;
-}
-
-/* Styling input fields */
-input {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 14px;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  background: rgba(255, 255, 255, 0.2); /* Slightly transparent, blending into container */
-  color: white; /* White text for contrast */
-  transition:
-    background 0.3s ease-in-out,
-    box-shadow 0.3s ease-in-out;
-}
-
-/* Input placeholder styling */
-input::placeholder {
-  color: rgba(255, 255, 255, 0.7); /* Light white for subtle effect */
-}
-
-/* Focus effect */
-input:focus {
-  outline: none;
-  background: rgba(255, 255, 255, 0.3); /* Slightly brighter on focus */
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
-}
-
-/* Button styling */
-button {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #2980b9;
-}
-
-button:disabled {
-  background-color: #bdc3c7;
-  cursor: not-allowed;
-}
-
-/* Error and success message styling */
-.error-message {
-  color: #e74c3c;
-  text-align: center;
-  margin-top: 12px;
-}
-
-.success-message {
-  color: #2ecc71;
-  text-align: center;
-  margin-top: 12px;
-}
-
-/* Toggle link styling */
-.toggle-text {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 14px;
-  color: #f1f1f1;
-}
-
-/* Toggle link styling */
-.toggle-text a {
-  color: #5d9cec; /* Google-like blue, more natural for links */
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.toggle-text a:hover {
-  text-decoration: underline;
-  color: #5d9cec; /* Darker blue on hover to provide contrast */
-}
-
-/* Smooth fade-in effect */
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
+/* Optional: You can further adjust the placeholder text color globally here if needed */
 </style>
+
+<style scoped>
+/* You can also add custom styles here if needed */
+</style>
+
+<style scoped>
+/* You can also add custom styles here if needed */
+</style>
+
+<style scoped></style>
