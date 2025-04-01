@@ -123,14 +123,14 @@ const routes = [
     component: UserDashboard,
     beforeEnter: authGuard(['customer']),
     children: [
-      // {
-      //   path: '/user-view-cars', // Corrected the path to be a child of customer-dashboard
-      //   component: UserViewCars,
-      // },
+      {
+        path: '/user-view-cars', // Corrected the path to be a child of customer-dashboard
+        component: UserViewCars,
+      },
     ],
   },
   {
-    path: '/home-view-cars',
+    path: '/user-view-cars',
     component: UserViewCars,
   },
 ]

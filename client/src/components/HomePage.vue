@@ -17,7 +17,7 @@
           <h2 class="text-2xl font-semibold text-white">Browse Available Cars</h2>
           <p class="text-gray-400 mt-2">Explore a variety of cars, from economy to luxury.</p>
           <RouterLink
-            to="/home-view-cars"
+            to="/user-view-cars"
             class="inline-block mt-4 bg-blue-500 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-blue-600 transition duration-300"
           >
             View Cars

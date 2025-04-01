@@ -1,9 +1,8 @@
 <template>
   <div class="min-h-screen bg-gray-900 text-gray-300">
-    <!-- Header / Navbar -->
+    <!-- Header / Navbar (Hidden in Customer Dashboard) -->
     <header class="bg-gray-800 shadow-md fixed w-full top-0 left-0 z-50">
       <nav class="container mx-auto flex justify-end items-center py-4 px-6">
-        <!-- Navigation Links (All aligned to Right) -->
         <div class="flex gap-6">
           <RouterLink to="/" class="hover:text-blue-400 transition duration-300 font-medium">
             Home
